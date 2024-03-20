@@ -54,7 +54,8 @@
     "autoload": {
         "psr-4": {
             "UPS\\QuantumView\\" : "./QuantumView/src/",
-            "UPS\\Pickup\\" : "./Pickup/src/"
+            "UPS\\Pickup\\" : "./Pickup/src/",
+            "UPS\\Shipping\\" : "./Shipping/src/"
         }
     }
 }
