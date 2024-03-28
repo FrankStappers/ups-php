@@ -63,6 +63,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'manifest' => OneOfSubscriptionFileManifest::class,
         'origin' => OneOfSubscriptionFileOrigin::class,
         'exception' => OneOfSubscriptionFileException::class,
+        'delivery' => OneOfSubscriptionFileDelivery::class,
     ];
 
     /**
@@ -77,6 +78,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'manifest' => null,
         'origin' => null,
         'exception' => null,
+        'delivery' => null,
     ];
 
     /**
@@ -112,6 +114,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'manifest' => 'Manifest',
         'origin' => 'Origin',
         'exception' => 'Exception',
+        'delivery' => 'Delivery',
     ];
 
     /**
@@ -126,6 +129,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'manifest' => 'setManifest',
         'origin' => 'setOrigin',
         'exception' => 'setException',
+        'delivery' => 'setDelivery',
     ];
 
     /**
@@ -140,6 +144,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'manifest' => 'getManifest',
         'origin' => 'getOrigin',
         'exception' => 'getException',
+        'delivery' => 'getDelivery',
     ];
 
     /**
@@ -206,6 +211,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         $this->container['manifest'] = isset($data['manifest']) ? $data['manifest'] : null;
         $this->container['origin'] = isset($data['origin']) ? $data['origin'] : null;
         $this->container['exception'] = isset($data['exception']) ? $data['exception'] : null;
+        $this->container['delivery'] = isset($data['delivery']) ? $data['delivery'] : null;
     }
 
     /**
@@ -378,6 +384,30 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     public function setException($exception)
     {
         $this->container['exception'] = $exception;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery
+     *
+     * @return null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileDelivery
+     */
+    public function getDelivery()
+    {
+        return $this->container['delivery'];
+    }
+
+    /**
+     * Sets delivery
+     *
+     * @param null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileDelivery $delivery delivery
+     *
+     * @return $this
+     */
+    public function setDelivery($delivery)
+    {
+        $this->container['delivery'] = $delivery;
 
         return $this;
     }
