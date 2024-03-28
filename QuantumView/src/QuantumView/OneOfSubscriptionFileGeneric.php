@@ -1,6 +1,6 @@
 <?php
 /**
- * SubscriptionEventsSubscriptionFile
+ * OneOfSubscriptionFileGeneric
  *
  * PHP version 5
  *
@@ -32,15 +32,14 @@ use \ArrayAccess;
 use \UPS\QuantumView\ObjectSerializer;
 
 /**
- * SubscriptionEventsSubscriptionFile Class Doc Comment
+ * OneOfSubscriptionFileGeneric Class Doc Comment
  *
  * @category Class
- * @description Container holds all of the unread files associated with the subscription.
  * @package  UPS\QuantumView
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
+class OneOfSubscriptionFileGeneric implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +48,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SubscriptionEvents_SubscriptionFile';
+    protected static $swaggerModelName = 'OneOfSubscriptionFile_Generic';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +56,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'file_name' => 'string',
-        'status_type' => '\UPS\QuantumView\QuantumView\SubscriptionFileStatusType',
-        'generic' => OneOfSubscriptionFileGeneric::class
     ];
 
     /**
@@ -68,9 +64,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'file_name' => null,
-        'status_type' => null,
-        'generic' => null,
     ];
 
     /**
@@ -100,9 +93,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'file_name' => 'FileName',
-        'status_type' => 'StatusType',
-        'generic' => 'Generic'
     ];
 
     /**
@@ -111,9 +101,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'file_name' => 'setFileName',
-        'status_type' => 'setStatusType',
-        'generic' => 'setGeneric'
     ];
 
     /**
@@ -122,9 +109,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'file_name' => 'getFileName',
-        'status_type' => 'getStatusType',
-        'generic' => 'getGeneric'
     ];
 
     /**
@@ -185,9 +169,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['file_name'] = isset($data['file_name']) ? $data['file_name'] : null;
-        $this->container['status_type'] = isset($data['status_type']) ? $data['status_type'] : null;
-        $this->container['generic'] = isset($data['generic']) ? $data['generic'] : null;
     }
 
     /**
@@ -199,12 +180,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['file_name'] === null) {
-            $invalidProperties[] = "'file_name' can't be null";
-        }
-        if ($this->container['status_type'] === null) {
-            $invalidProperties[] = "'status_type' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -218,80 +193,6 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
-
-    /**
-     * Gets file_name
-     *
-     * @return string
-     */
-    public function getFileName()
-    {
-        return $this->container['file_name'];
-    }
-
-    /**
-     * Sets file_name
-     *
-     * @param string $file_name File name belonging to specific subscription requested by user. Format: YYMMDD_HHmmssnnn
-     *
-     * @return $this
-     */
-    public function setFileName($file_name)
-    {
-        $this->container['file_name'] = $file_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets status_type
-     *
-     * @return \UPS\QuantumView\QuantumView\SubscriptionFileStatusType
-     */
-    public function getStatusType()
-    {
-        return $this->container['status_type'];
-    }
-
-    /**
-     * Sets status_type
-     *
-     * @param \UPS\QuantumView\QuantumView\SubscriptionFileStatusType $status_type status_type
-     *
-     * @return $this
-     */
-    public function setStatusType($status_type)
-    {
-        $this->container['status_type'] = $status_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets generic
-     *
-     * @return null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileGeneric
-     */
-    public function getGeneric()
-    {
-        return $this->container['generic'];
-    }
-
-    /**
-     * Sets generic
-     *
-     * @param null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileGeneric $generic generic
-     *
-     * @return $this
-     */
-    public function setGeneric($generic)
-    {
-        $this->container['generic'] = $generic;
-
-        return $this;
-    }
-
 
     /**
      * Returns true if offset exists. False otherwise.
@@ -366,4 +267,9 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
+
+    public static $oneOf = [
+        '\UPS\QuantumView\QuantumView\SubscriptionFileGeneric',
+        '\UPS\QuantumView\QuantumView\SubscriptionFileGeneric[]'
+    ];
 }

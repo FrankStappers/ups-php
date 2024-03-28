@@ -61,7 +61,7 @@ class QuantumViewEventsSubscriptionEvents implements ModelInterface, ArrayAccess
         'number' => 'string',
         'subscription_status' => '\UPS\QuantumView\QuantumView\SubscriptionEventsSubscriptionStatus',
         'date_range' => '\UPS\QuantumView\QuantumView\SubscriptionEventsDateRange',
-//        'subscription_file' => 'OneOfQuantumViewEventsSubscriptionEventsSubscriptionFile'
+        'subscription_file' => OneOfQuantumViewEventsSubscriptionEventsSubscriptionFile::class
     ];
 
     /**
@@ -74,7 +74,7 @@ class QuantumViewEventsSubscriptionEvents implements ModelInterface, ArrayAccess
         'number' => null,
         'subscription_status' => null,
         'date_range' => null,
-//        'subscription_file' => null
+        'subscription_file' => null
     ];
 
     /**
@@ -108,7 +108,7 @@ class QuantumViewEventsSubscriptionEvents implements ModelInterface, ArrayAccess
         'number' => 'Number',
         'subscription_status' => 'SubscriptionStatus',
         'date_range' => 'DateRange',
-//        'subscription_file' => 'SubscriptionFile'
+        'subscription_file' => 'SubscriptionFile'
     ];
 
     /**
@@ -134,7 +134,7 @@ class QuantumViewEventsSubscriptionEvents implements ModelInterface, ArrayAccess
         'number' => 'getNumber',
         'subscription_status' => 'getSubscriptionStatus',
         'date_range' => 'getDateRange',
-//        'subscription_file' => 'getSubscriptionFile'
+        'subscription_file' => 'getSubscriptionFile'
     ];
 
     /**

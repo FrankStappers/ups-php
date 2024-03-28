@@ -38,6 +38,8 @@ namespace UPS\QuantumView;
  */
 class ObjectSerializer
 {
+
+    static $messages = [];
     /**
      * Serialize data
      *
@@ -247,10 +249,6 @@ class ObjectSerializer
         } elseif (self::isArray($class)) {
             $subClass = substr($class, 0, -2);
             $values = [];
-            if (!is_array($data)) {
-//                throw new \UnexpectedValueException('array expected, got %s',);
-            }
-
             foreach ($data as $key => $value) {
                 $values[] = self::deserialize($value, $subClass, null);
             }
@@ -299,19 +297,35 @@ class ObjectSerializer
             return $data;
         } elseif (preg_match('~(^|\\\)OneOf~', $class) != false) {
             $instance = new $class();
+            if (!property_exists($class, 'oneOf')) {
+                $message = "'\$oneOf' property not defined for $class";
+                if (!array_key_exists($message, self::$messages)) {
+                    print_r($message. PHP_EOL);
+//                    self::$messages[$message] = true;
+                }
+                return $instance;
+            }
+
             $r = [];
-            foreach ($instance::oneOf() as $anyOff) {
+            foreach ($instance::$oneOf as $anyOff) {
                 try {
                     $t = self::deserialize($data, $anyOff, null);
-                    if (self::isArray($anyOff) && !is_array($anyOff) || !$t->valid()) {
+                    if ((self::isArray($anyOff) && !is_array($data)) ||
+                        (!self::isArray($anyOff) && is_array($data)) ||
+                        (is_object($t) && !$t->valid())) {
                         continue;
                     }
                     $r[] = $t;
                 } catch (\UnexpectedValueException $e) {
                 }
             }
-
-            print_r('x');
+            if (count($r) == 0) {
+                throw new \InvalidArgumentException("One of '$class', has no matches");
+            }
+            if (count($r) > 1) {
+                throw new \InvalidArgumentException("One of '$class', has multiple matches");
+            }
+            return reset($r);
 
 
         } else {

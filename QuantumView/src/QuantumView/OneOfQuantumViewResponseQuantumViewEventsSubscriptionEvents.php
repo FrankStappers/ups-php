@@ -268,12 +268,7 @@ class OneOfQuantumViewResponseQuantumViewEventsSubscriptionEvents implements Mod
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 
-    public static function oneOf()
-    {
-        return self::$oneOf;
-    }
-
-    protected static $oneOf = [
+    public static $oneOf = [
         '\UPS\QuantumView\QuantumView\QuantumViewEventsSubscriptionEvents',
         '\UPS\QuantumView\QuantumView\QuantumViewEventsSubscriptionEvents[]'
 
