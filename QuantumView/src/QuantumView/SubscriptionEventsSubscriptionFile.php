@@ -62,6 +62,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'generic' => OneOfSubscriptionFileGeneric::class,
         'manifest' => OneOfSubscriptionFileManifest::class,
         'origin' => OneOfSubscriptionFileOrigin::class,
+        'exception' => OneOfSubscriptionFileException::class,
     ];
 
     /**
@@ -75,6 +76,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'generic' => null,
         'manifest' => null,
         'origin' => null,
+        'exception' => null,
     ];
 
     /**
@@ -109,6 +111,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'generic' => 'Generic',
         'manifest' => 'Manifest',
         'origin' => 'Origin',
+        'exception' => 'Exception',
     ];
 
     /**
@@ -122,6 +125,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'generic' => 'setGeneric',
         'manifest' => 'setManifest',
         'origin' => 'setOrigin',
+        'exception' => 'setException',
     ];
 
     /**
@@ -135,6 +139,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'generic' => 'getGeneric',
         'manifest' => 'getManifest',
         'origin' => 'getOrigin',
+        'exception' => 'getException',
     ];
 
     /**
@@ -200,6 +205,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         $this->container['generic'] = isset($data['generic']) ? $data['generic'] : null;
         $this->container['manifest'] = isset($data['manifest']) ? $data['manifest'] : null;
         $this->container['origin'] = isset($data['origin']) ? $data['origin'] : null;
+        $this->container['exception'] = isset($data['exception']) ? $data['exception'] : null;
     }
 
     /**
@@ -327,6 +333,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
     /**
      * Gets origin
      *
@@ -347,6 +354,30 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     public function setOrigin($origin)
     {
         $this->container['origin'] = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Gets exception
+     *
+     * @return null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileException
+     */
+    public function getException()
+    {
+        return $this->container['exception'];
+    }
+
+    /**
+     * Sets exception
+     *
+     * @param null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileException $exception exception
+     *
+     * @return $this
+     */
+    public function setException($exception)
+    {
+        $this->container['exception'] = $exception;
 
         return $this;
     }
