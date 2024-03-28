@@ -59,7 +59,8 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'file_name' => 'string',
         'status_type' => '\UPS\QuantumView\QuantumView\SubscriptionFileStatusType',
-        'generic' => OneOfSubscriptionFileGeneric::class
+        'generic' => OneOfSubscriptionFileGeneric::class,
+        'manifest' => OneOfSubscriptionFileManifest::class
     ];
 
     /**
@@ -71,6 +72,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'file_name' => null,
         'status_type' => null,
         'generic' => null,
+        'manifest' => null,
     ];
 
     /**
@@ -102,7 +104,8 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'file_name' => 'FileName',
         'status_type' => 'StatusType',
-        'generic' => 'Generic'
+        'generic' => 'Generic',
+        'manifest' => 'Manifest',
     ];
 
     /**
@@ -113,7 +116,8 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     protected static $setters = [
         'file_name' => 'setFileName',
         'status_type' => 'setStatusType',
-        'generic' => 'setGeneric'
+        'generic' => 'setGeneric',
+        'manifest' => 'setManifest',
     ];
 
     /**
@@ -124,7 +128,8 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     protected static $getters = [
         'file_name' => 'getFileName',
         'status_type' => 'getStatusType',
-        'generic' => 'getGeneric'
+        'generic' => 'getGeneric',
+        'manifest' => 'getManifest',
     ];
 
     /**
@@ -188,6 +193,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         $this->container['file_name'] = isset($data['file_name']) ? $data['file_name'] : null;
         $this->container['status_type'] = isset($data['status_type']) ? $data['status_type'] : null;
         $this->container['generic'] = isset($data['generic']) ? $data['generic'] : null;
+        $this->container['manifest'] = isset($data['manifest']) ? $data['manifest'] : null;
     }
 
     /**
@@ -292,6 +298,29 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         return $this;
     }
 
+    /**
+     * Gets manifest
+     *
+     * @return null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileManifest
+     */
+    public function getManifest()
+    {
+        return $this->container['manifest'];
+    }
+
+    /**
+     * Sets manifest
+     *
+     * @param null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileManifest $manifest manifest
+     *
+     * @return $this
+     */
+    public function setManifest($manifest)
+    {
+        $this->container['manifest'] = $manifest;
+
+        return $this;
+    }
 
     /**
      * Returns true if offset exists. False otherwise.

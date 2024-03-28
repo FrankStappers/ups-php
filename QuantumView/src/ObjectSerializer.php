@@ -307,9 +307,15 @@ class ObjectSerializer
             }
 
             $r = [];
+            $allowEmptyArray = false;
             foreach ($instance::$oneOf as $anyOff) {
+//                print_r($anyOff . PHP_EOL);
+
                 try {
                     $t = self::deserialize($data, $anyOff, null);
+                    $allowEmptyArray |= self::isArray($anyOff) && is_array($data) && empty($data);
+//                    var_export($t);
+
                     if ((self::isArray($anyOff) && !is_array($data)) ||
                         (!self::isArray($anyOff) && is_array($data)) ||
                         (is_object($t) && !$t->valid())) {
@@ -319,7 +325,10 @@ class ObjectSerializer
                 } catch (\UnexpectedValueException $e) {
                 }
             }
-            if (count($r) == 0) {
+            if (count($r) == 0 && !$allowEmptyArray) {
+                print_r($class);
+                print_r($data);
+
                 throw new \InvalidArgumentException("One of '$class', has no matches");
             }
             if (count($r) > 1) {
