@@ -301,6 +301,7 @@ class ObjectSerializer
                 $message = "'\$oneOf' property not defined for $class";
                 if (!array_key_exists($message, self::$messages)) {
                     print_r($message. PHP_EOL);
+                    die();
 //                    self::$messages[$message] = true;
                 }
                 return $instance;
@@ -313,7 +314,7 @@ class ObjectSerializer
 
                 try {
                     $t = self::deserialize($data, $anyOff, null);
-                    $allowEmptyArray |= self::isArray($anyOff) && is_array($data) && empty($data);
+                    $allowEmptyArray = (self::isArray($anyOff) && is_array($data) && empty($data));
 //                    var_export($t);
 
                     if ((self::isArray($anyOff) && !is_array($data)) ||

@@ -60,7 +60,8 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'file_name' => 'string',
         'status_type' => '\UPS\QuantumView\QuantumView\SubscriptionFileStatusType',
         'generic' => OneOfSubscriptionFileGeneric::class,
-        'manifest' => OneOfSubscriptionFileManifest::class
+        'manifest' => OneOfSubscriptionFileManifest::class,
+        'origin' => OneOfSubscriptionFileOrigin::class,
     ];
 
     /**
@@ -73,6 +74,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'status_type' => null,
         'generic' => null,
         'manifest' => null,
+        'origin' => null,
     ];
 
     /**
@@ -106,6 +108,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'status_type' => 'StatusType',
         'generic' => 'Generic',
         'manifest' => 'Manifest',
+        'origin' => 'Origin',
     ];
 
     /**
@@ -118,6 +121,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'status_type' => 'setStatusType',
         'generic' => 'setGeneric',
         'manifest' => 'setManifest',
+        'origin' => 'setOrigin',
     ];
 
     /**
@@ -130,6 +134,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         'status_type' => 'getStatusType',
         'generic' => 'getGeneric',
         'manifest' => 'getManifest',
+        'origin' => 'getOrigin',
     ];
 
     /**
@@ -194,6 +199,7 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
         $this->container['status_type'] = isset($data['status_type']) ? $data['status_type'] : null;
         $this->container['generic'] = isset($data['generic']) ? $data['generic'] : null;
         $this->container['manifest'] = isset($data['manifest']) ? $data['manifest'] : null;
+        $this->container['origin'] = isset($data['origin']) ? $data['origin'] : null;
     }
 
     /**
@@ -318,6 +324,29 @@ class SubscriptionEventsSubscriptionFile implements ModelInterface, ArrayAccess
     public function setManifest($manifest)
     {
         $this->container['manifest'] = $manifest;
+
+        return $this;
+    }
+    /**
+     * Gets origin
+     *
+     * @return null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileOrigin
+     */
+    public function getOrigin()
+    {
+        return $this->container['origin'];
+    }
+
+    /**
+     * Sets origin
+     *
+     * @param null|\UPS\QuantumView\QuantumView\OneOfSubscriptionFileOrigin $origin origin
+     *
+     * @return $this
+     */
+    public function setOrigin($origin)
+    {
+        $this->container['origin'] = $origin;
 
         return $this;
     }

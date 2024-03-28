@@ -488,7 +488,7 @@ class SubscriptionFileManifest implements ModelInterface, ArrayAccess
             $invalidProperties[] = "'ship_to' can't be null";
         }
 //  UPS returns manifests without 'consignee_bill_indicator' and 'collect_bill_indicator' nodes
-        
+
 //        if ($this->container['consignee_bill_indicator'] === null) {
 //            $invalidProperties[] = "'consignee_bill_indicator' can't be null";
 //        }
