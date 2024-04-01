@@ -38,8 +38,6 @@ namespace UPS\QuantumView;
  */
 class ObjectSerializer
 {
-
-    static $messages = [];
     /**
      * Serialize data
      *
@@ -298,44 +296,31 @@ class ObjectSerializer
         } elseif (preg_match('~(^|\\\)OneOf~', $class) != false) {
             $instance = new $class();
             if (!property_exists($class, 'oneOf')) {
-                $message = "'\$oneOf' property not defined for $class";
-                if (!array_key_exists($message, self::$messages)) {
-                    print_r($message. PHP_EOL);
-                    die();
-//                    self::$messages[$message] = true;
-                }
-                return $instance;
+                throw new \InvalidArgumentException("'\$oneOf' property not defined for $class");
             }
 
-            $r = [];
+            $oneOfOptions = [];
             $allowEmptyArray = false;
             foreach ($instance::$oneOf as $anyOff) {
-//                print_r($anyOff . PHP_EOL);
-
                 try {
-                    $t = self::deserialize($data, $anyOff, null);
+                    $option = self::deserialize($data, $anyOff, null);
                     $allowEmptyArray = (self::isArray($anyOff) && is_array($data) && empty($data));
-//                    var_export($t);
-
                     if ((self::isArray($anyOff) && !is_array($data)) ||
                         (!self::isArray($anyOff) && is_array($data)) ||
-                        (is_object($t) && !$t->valid())) {
+                        (is_object($option) && !$option->valid())) {
                         continue;
                     }
-                    $r[] = $t;
+                    $oneOfOptions[] = $option;
                 } catch (\UnexpectedValueException $e) {
                 }
             }
-            if (count($r) == 0 && !$allowEmptyArray) {
-                print_r($class);
-                print_r($data);
-
+            if (count($oneOfOptions) == 0 && !$allowEmptyArray) {
                 throw new \InvalidArgumentException("One of '$class', has no matches");
             }
-            if (count($r) > 1) {
+            if (count($oneOfOptions) > 1) {
                 throw new \InvalidArgumentException("One of '$class', has multiple matches");
             }
-            return reset($r);
+            return reset($oneOfOptions);
 
 
         } else {
