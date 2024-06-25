@@ -55,7 +55,8 @@
         "psr-4": {
             "UPS\\QuantumView\\" : "./QuantumView/src/",
             "UPS\\Pickup\\" : "./Pickup/src/",
-            "UPS\\Shipping\\" : "./Shipping/src/"
+            "UPS\\Shipping\\" : "./Shipping/src/",
+            "UPS\\Locator\\" : "./Locator/src/"
         }
     }
 }
